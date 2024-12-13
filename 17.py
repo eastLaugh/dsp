@@ -36,12 +36,12 @@ def 设计滤波器(wp: float, ws: float, dp: float, ds: float):
     w, h = freqz(fNum, worN=512)  #注意fNum是非因果的，而freqz要求因果序列，所以这里的频率响应的相位是不准确的，不过幅度是准确的
 
     # 绘制滤波器系数
-    plt.figure()
-    plt.stem(fRange, fNum)
-    plt.title("滤波器系数")
-    plt.xlabel("n")
-    plt.ylabel("Amplitude")
-    plt.grid()
+    # plt.figure()
+    # plt.stem(fRange, fNum)
+    # plt.title("滤波器系数")
+    # plt.xlabel("n")
+    # plt.ylabel("Amplitude")
+    # plt.grid()
 
     # 绘制频率响应
     plt.figure()
@@ -51,8 +51,17 @@ def 设计滤波器(wp: float, ws: float, dp: float, ds: float):
     plt.xlabel(r"$\omega/\pi$")
     plt.ylabel("增益 (dB)")
     plt.grid()
+
+    #用对数图重新画一下频率响应
+    plt.figure()
+    plt.plot(w / pi, 20 * np.log10(np.abs(h)))
+    plt.title("频率响应")
+    plt.xlabel(r"$\omega/\pi$")
+    plt.ylabel("增益 (dB)")
+    plt.grid()
     plt.show()
-    
+
+
 
     # 打印滤波器长度
     print(f"滤波器长度 N: {N}")
